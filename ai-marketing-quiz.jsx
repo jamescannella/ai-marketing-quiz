@@ -663,7 +663,7 @@ export default function QuizApp() {
   const [copied, setCopied] = useState(false);
   const topRef = useRef(null);
 
-  const QUIZ_URL = "https://ai-marketing-quiz.netlify.app";
+  const QUIZ_URL = "https://www.jamescannella.com/tools/ai-marketing-quiz";
 
   function getShareText(score, tierLabel) {
     const scoreBar = Array.from({ length: 10 }, (_, i) =>

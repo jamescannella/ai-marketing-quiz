@@ -665,6 +665,18 @@ export default function QuizApp() {
 
   const QUIZ_URL = "https://www.jamescannella.com/tools/ai-marketing-quiz";
 
+  // Post height to parent for dynamic iframe resizing
+  useEffect(() => {
+    const postHeight = () => {
+      const height = document.documentElement.scrollHeight;
+      window.parent.postMessage({ type: "quizResize", height }, "*");
+    };
+    postHeight();
+    const observer = new ResizeObserver(postHeight);
+    observer.observe(document.body);
+    return () => observer.disconnect();
+  }, [phase, revealed, current]);
+
   function getShareText(score, tierLabel) {
     const scoreBar = Array.from({ length: 10 }, (_, i) =>
       i < score ? "█" : "░"
